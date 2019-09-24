@@ -1,7 +1,7 @@
 import React from "react";
 
 const BotCard = props => {
-  const { bot } = props;
+  const { view, bot } = props;
 
   let botType;
 
@@ -19,44 +19,41 @@ const BotCard = props => {
       botType = <div />;
   }
 
+  const showView = () => {
+    view(bot.id)
+  }
+
   return (
-    <div className="ui column">
-      <div
-        className="ui card"
-        key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
-      >
-        <div className="image">
-          <img alt="oh no!" src={bot.avatar_url} />
+    <div className="ui card" key={bot.id} onClick={showView}>
+      <div className="image">
+        <img alt="oh no!" src={bot.avatar_url} /> 
+      </div>
+      <div className="content">
+        <div className="header">
+          {bot.name} {botType}
         </div>
-        <div className="content">
-          <div className="header">
-            {bot.name} {botType}
-          </div>
-
-          <div className="meta text-wrap">
-            <small>{bot.catchphrase}</small>
-          </div>
+        
+        <div className="meta">
+          <small>{bot.catchphrase}</small>
         </div>
-        <div className="extra content">
-          <span>
-            <i className="icon heartbeat" />
+      </div>
+      <div className="extra content">
+        <span>
+          <i className="icon heartbeat"/>
             {bot.health}
-          </span>
+        </span>
 
-          <span>
-            <i className="icon lightning" />
+        <span>
+          <i className="icon lightning" />
             {bot.damage}
-          </span>
-          <span>
-            <i className="icon shield" />
+        </span>
+        <span>
+          <i className="icon shield" />
             {bot.armor}
-          </span>
-        </div>
+        </span>
       </div>
     </div>
   );
-
 };
 
 export default BotCard;
