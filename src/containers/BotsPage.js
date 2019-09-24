@@ -12,6 +12,7 @@ class BotsPage extends React.Component {
     currentId : ''
   }
 
+  // get bots upon component mount, set bots in state
   componentDidMount = () => {
     fetch('https://bot-battler-api.herokuapp.com/api/v1/bots')
     .then(res => res.json())
@@ -22,8 +23,8 @@ class BotsPage extends React.Component {
     })
   }
 
-  ///add owned attribute to bot, filter by owned to send to my bot army
-  //collects bot by adding owned property to bot
+
+  //collects bot by adding owned property to bot using map method
   collectBot = (id) =>{
     const newBots = this.state.bots.map((bot) => {
       if(bot.id === id){
@@ -33,6 +34,7 @@ class BotsPage extends React.Component {
         return {...bot}
       }
     })
+    // resets page state to index page after adding owned property to bot
     this.setState({
       bots: newBots,
       showPage: false,
@@ -50,13 +52,14 @@ class BotsPage extends React.Component {
         return { ...bot }
       }
     })
+    //resets bots state
     this.setState({
       bots: newBots
     })
   } 
 
 
-
+  // handles click on either botcard in your bot army or enlist button in bot specs by checking if bot.owned is true (or exists)
   handleClick = (id) => {
     const bot = this.state.bots.find((bot) => bot.id === id)
     if(bot.owned){
@@ -74,7 +77,7 @@ class BotsPage extends React.Component {
     })
   }
 
-  
+  // checks if id is true (exists) and sets page state to true with current id if an id is passed in, or false and empty srting if the boolean "false" is sent in
   pageState = (id) => {
     if (id){
       this.setState({
@@ -89,17 +92,18 @@ class BotsPage extends React.Component {
     }
   }
   
-
+// returns show page for specific bot using current id in state
   getShowPage = (id) => {
     const bot = this.state.bots.find((bot) => bot.id === id)
     console.log(bot);
     return (<BotSpecs handleClick={this.handleClick} pageState={this.pageState} bot={bot} />)
   }
 
+// returns index page
   backToIndexPage = () => {
     return (<BotCollection handleClick={this.handleClick} pageState={this.pageState} bots={this.state.bots} /> )
   }
-
+  // displays page based on boolean set in state
   render() {
     console.log(this.state)
     return (

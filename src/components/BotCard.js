@@ -18,10 +18,10 @@ const BotCard = props => {
     default:
       botType = <div />;
   }
-
+// delegates whether to go to show page or remove bot depending on which bot card is clicked - checks if bot.owned and if bot is in collection
   const checkBotStatus = () => {
     console.log(props)
-    if(bot.owned){
+    if(bot.owned && props.inCollection === false){
       props.handleClick(bot.id)
     } else{
       props.pageState(bot.id)

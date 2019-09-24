@@ -61,6 +61,7 @@ const BotSpecs = props => {
             <button
               className="ui button fluid"
               onClick={() =>
+                //sets pageState to false in BotsPage when clicking on "Go Back"
                 props.pageState(false)
               }
             >
@@ -68,7 +69,12 @@ const BotSpecs = props => {
             </button>
             <button
               className="ui button fluid"
+              disabled={
+                //disables button if bot is owned
+                bot.owned
+              }
               onClick={() =>
+                //triggers handleClick function which delegates to collectBot with passed in ID, also switches state  back to index page
                  props.handleClick(bot.id)
               }
             >
