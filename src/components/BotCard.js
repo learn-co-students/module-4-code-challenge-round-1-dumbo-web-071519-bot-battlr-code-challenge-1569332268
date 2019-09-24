@@ -1,9 +1,38 @@
 import React from "react";
+// import BotCollection from "BotCollection";
 
 const BotCard = props => {
+
+  
   const { bot } = props;
 
   let botType;
+
+  {
+    props.bot.map(bot => {
+
+      return  (
+        <div
+        className="ui card"
+        key={bot.id}
+        onClick={() => console.log("add code to connect event listener")}
+      >
+        <h1>Hello from BotCard!!</h1>
+
+            <li>{bot.name}</li>
+            <li>{bot.health}</li>
+            <li>{bot.damage}</li>
+            <li>{bot.armor}</li>
+            <li>{bot.bot_class}</li>
+            <li>{bot.catchphrase}</li>
+            <img alt="oh no!" src={bot.avatar_url} />
+
+      </div>
+      
+      
+      )
+    })
+  }
 
   switch (bot.bot_class) {
     case "Assault":
@@ -19,8 +48,17 @@ const BotCard = props => {
       botType = <div />;
   }
 
+  props.bot.map(bot => {
+
+  })
   return (
+
+    
     <div className="ui column">
+
+
+
+
       <div
         className="ui card"
         key={bot.id}
