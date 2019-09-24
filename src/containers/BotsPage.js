@@ -11,7 +11,7 @@ class BotsPage extends React.Component {
     console.log("I am enlisted!", bot)
     //! First check if this bot is already on the list
     if (this.state.enlisted.includes(bot)) {
-      console.log('I am already here!')
+      alert('This bot is already enlisted!')
       return
     }
     //! If it's not, then enlist this bot
@@ -25,6 +25,9 @@ class BotsPage extends React.Component {
 
   onDischarge = (bot) => {
     console.log("I am being discharged!", bot)
+    this.setState({
+      enlisted: this.state.enlisted.filter(b => b !== bot)
+    })
   }
 
   componentDidMount(){
