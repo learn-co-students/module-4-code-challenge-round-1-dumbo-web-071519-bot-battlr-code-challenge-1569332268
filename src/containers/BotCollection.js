@@ -10,6 +10,19 @@ class BotCollection extends React.Component {
     })
   }
 
+  // renderBots = () => {
+  //   if (!this.props.selectedBot) {
+  //     return this.props.bots.map((bot) => {
+  //       return <BotCard key={bot.id} bot={bot} enlistBot={this.props.enlistBot} />
+  //     })
+  //   }
+  //   else {
+  //     return return this.props.bots.map((bot) => {
+  //       return <BotCard key={bot.id} bot={bot} enlistBot={this.props.enlistBot} />
+  //     })
+  //   }
+  // }
+
   render(){
   	return (
   	  <div className="ui four column grid">

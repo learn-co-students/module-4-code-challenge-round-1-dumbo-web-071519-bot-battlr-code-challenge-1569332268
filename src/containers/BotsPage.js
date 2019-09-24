@@ -8,7 +8,8 @@ class BotsPage extends React.Component {
   state ={
     bots: [],
     freeBots: [],
-    userBots: []
+    userBots: [],
+    selectedBot: null
   }
 
   enlistBot = (id) => {
@@ -29,7 +30,6 @@ class BotsPage extends React.Component {
       const botToDischarge = this.state.bots.find((bot) => {
         return bot.id === id
       })
-      console.log(botToDischarge)
 
       this.setState({
         freeBots: [...this.state.freeBots, botToDischarge],
@@ -39,21 +39,12 @@ class BotsPage extends React.Component {
       })
     }
 
-    // const newUserBotList = this.state.bots.filter((bot) => {
-    //   return bot.id === id
-    // })
-
-    // this.setState({
-    //   userBots: this.state.bots.map((bot) => {
-    //     if(bot.id === id) return bot
-    //   })
-    // })
-
-    // const newBotList = this.state.bots.filter((bot) => {
-    //   return bot.id !== id
-    // })
-    // console.log(newBotList)
-
+    // 4. REFACTOR
+    this.setState({
+      selectedBot: this.state.bots.find((bot) => {
+        return bot.id === id
+      })
+    })
 
   }
 
@@ -68,7 +59,7 @@ class BotsPage extends React.Component {
     return (
       <div>
         <YourBotArmy bots={this.state.userBots} enlistBot={this.enlistBot}/>
-        <BotCollection bots={this.state.freeBots} enlistBot={this.enlistBot} />
+        <BotCollection bots={this.state.freeBots} enlistBot={this.enlistBot} selectedBot={this.state.selectedBot}/>
       </div>
     );
   }
