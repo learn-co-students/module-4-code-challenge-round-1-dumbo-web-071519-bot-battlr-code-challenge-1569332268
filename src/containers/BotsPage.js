@@ -35,6 +35,21 @@ class BotsPage extends React.Component {
   }
 
 
+  // Refactoring strategy
+
+  //on line 44 instead of an addtoArmy callback to the BotCollection there would be a different callback
+  //acting as a "handle Submit" for the bot cards in the collection
+  //that displays a BotSpec
+
+  //each botSpec would recieve a bot object (with all the info, id, picture etc) as a prop
+
+  //the "add to army" button botSpec would recieve the current "add to army" callback on line 21
+
+  //the return back button would recieve a callback that rerenders the bot collection
+
+  //in order to replace Bot Collection with a Bot Spec ... ? 
+
+
   render() {
     return (
       <div>

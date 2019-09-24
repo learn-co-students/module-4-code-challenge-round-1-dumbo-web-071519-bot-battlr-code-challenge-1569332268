@@ -76,7 +76,7 @@ This refactored version should look like the following:
 
 [full_demo]: ./public/full_demo.gif "Full demo"
 
-
+//see comments for my strategy about how I would implement this since I didn't have time to actually write the code out
 
 ## Finishing up
 
