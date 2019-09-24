@@ -19,12 +19,22 @@ const BotCard = props => {
       botType = <div />;
   }
 
+  const checkBotStatus = () => {
+    console.log(props.inCollection, bot.owned)
+    if(props.inCollection && bot.owned){
+      return ("This bot has been clicked")
+    } else{
+      props.handleClick(bot.id)
+    }
+  }
+
+
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={checkBotStatus}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
