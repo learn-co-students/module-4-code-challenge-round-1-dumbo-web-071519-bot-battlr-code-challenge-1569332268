@@ -20,11 +20,11 @@ const BotCard = props => {
   }
 
   const checkBotStatus = () => {
-    console.log(props.inCollection, bot.owned)
-    if(props.inCollection && bot.owned){
-      return ("This bot has been clicked")
-    } else{
+    console.log(props)
+    if(bot.owned){
       props.handleClick(bot.id)
+    } else{
+      props.pageState(bot.id)
     }
   }
 

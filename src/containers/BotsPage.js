@@ -1,12 +1,15 @@
 import React from "react";
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy";
+import BotSpecs from "../components/BotSpecs"
 
 class BotsPage extends React.Component {
   //start here with your code for step one
 
   state = {
-    bots: []
+    bots: [],
+    showPage: false,
+    currentId : ''
   }
 
   componentDidMount = () => {
@@ -50,6 +53,8 @@ class BotsPage extends React.Component {
     })
   } 
 
+
+
   handleClick = (id) => {
     const bot = this.state.bots.find((bot) => bot.id === id)
     if(bot.owned){
@@ -59,6 +64,7 @@ class BotsPage extends React.Component {
     }
   }
 
+  
   // filters bots by owned to send to my bot army
   getOwnedBots = () => {
     return this.state.bots.filter((bot) => {
@@ -66,12 +72,38 @@ class BotsPage extends React.Component {
     })
   }
 
+  
+  pageState = (id) => {
+    if (id){
+      this.setState({
+        showPage: true,
+        currentId: id
+      })
+    } else {
+      this.setState({
+        showPage: false,
+        currentId: ''
+      })
+    }
+  }
+  
+
+  getShowPage = (id) => {
+    const bot = this.state.bots.find((bot) => bot.id === id)
+    console.log(bot);
+    return (<BotSpecs handleClick={this.handleClick} pageState={this.pageState} bot={bot} />)
+  }
+
+  backToIndexPage = () => {
+    return (<BotCollection handleClick={this.handleClick} pageState={this.pageState} bots={this.state.bots} /> )
+  }
+
   render() {
     console.log(this.state)
     return (
       <div>
         <YourBotArmy handleClick={this.handleClick} myBots={this.getOwnedBots()} />
-        <BotCollection handleClick={this.handleClick} bots={this.state.bots}/> 
+        {this.state.showPage ? this.getShowPage(this.state.currentId) : this.backToIndexPage()}
       </div>
     );
   }
