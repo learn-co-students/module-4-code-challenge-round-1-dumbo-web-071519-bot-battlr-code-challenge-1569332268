@@ -1,4 +1,6 @@
 import React from "react";
+import BotCollection from "./BotCollection"
+
 
 class BotsPage extends React.Component {
   //start here with your code for step one
@@ -6,7 +8,7 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        {/* put your components here */}
+        { <BotCollection/> }
       </div>
     );
   }
