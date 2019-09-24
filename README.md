@@ -48,7 +48,7 @@ Based on the current structure of the app, think about where this array of bots 
 After you have fetched the bots, work on rendering them into `BotCollection`, which should be a child of `BotsPage`. A component called `BotCard` has been provided to you to display the information about an individual bot in a list format.
 
 
-### 3.  Enlisting and Discharging bots 
+### 3.  Enlisting and Discharging bots
 
 Once the list is complete, work on the functionality of enlisting bots into your army. Clicking a card should add a bot to the user's list of bots. Bots that have been chosen should be displayed within `YourBotArmy`, which should also be a child of `BotsPage`  (feel free to reuse `BotCard`). _A bot should be enlisted only once_. If you click on a bot in your army, that bot should be removed from your army.
 
@@ -76,12 +76,7 @@ This refactored version should look like the following:
 
 [full_demo]: ./public/full_demo.gif "Full demo"
 
-
-### BONUS
-
-If you have finished all of the above features before time is called, consider building out an extra feature. This could a sort, a filter, or a search. This deliverable is entirely optional, so do not feel pressure to meet this goal.
-
-
+//see comments for my strategy about how I would implement this since I didn't have time to actually write the code out
 
 ## Finishing up
 
