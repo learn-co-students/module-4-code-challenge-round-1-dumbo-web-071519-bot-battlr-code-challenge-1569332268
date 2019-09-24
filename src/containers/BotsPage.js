@@ -59,15 +59,9 @@ class BotsPage extends React.Component {
   filteredBots = (e) => {
     //? This makes React yell at me though...
     let botClass = e.target.value
-    if(botClass === "All"){
-      this.setState({
-        filtered: this.state.bots,
-        filterValue: "All"
-      })
-      return
-    }
+    let newBotList = botClass === "All" ? this.state.bots : this.state.bots.filter(b => b.bot_class === botClass)
     this.setState({
-      filtered: this.state.bots.filter(b => b.bot_class === botClass),
+      filtered: newBotList,
       filterValue: botClass
     })
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import BotCard from "../components/BotCard";
+import BotFilter from "../components/BotFilter"
 
 class BotCollection extends React.Component {
 	renderBotCards = () => {
@@ -9,17 +10,7 @@ class BotCollection extends React.Component {
 	render(){
 		return (
 			<div className="ui four column grid">
-				<div className="row">
-					<form onChange={(e) => this.props.filter(e)}>
-						<label htmlFor="filter">Filter Bots by Class:</label>
-						<select name="filter" id="filter" value={this.props.filterValue}>
-							<option value="All">All</option>
-							<option value="Defender">Defender</option>
-							<option value="Support">Support</option>
-							<option value="Assault">Assault</option>
-						</select>
-					</form>
-				</div>
+				<BotFilter filter={this.props.filter} filterValue={this.props.filterValue}/>
 				<div className="row">
 					{this.renderBotCards()}
 				</div>
