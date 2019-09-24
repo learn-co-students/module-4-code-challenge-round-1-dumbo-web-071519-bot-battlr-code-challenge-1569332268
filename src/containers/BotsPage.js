@@ -8,13 +8,19 @@ class BotsPage extends React.Component {
     bots: [],
     enlisted: [],
     show: false,
-    showingBot: []
+    showingBot: [],
+    filtered: [],
+    filterValue: "All"
   }
   onEnlist = (bot) => {
     console.log("I am enlisted!", bot)
     //! First check if this bot is already on the list
     if (this.state.enlisted.includes(bot)) {
       alert('This bot is already enlisted!')
+      this.setState({
+        show: false,
+        showingBot: []
+      })
       return
     }
     //! If it's not, then enlist this bot
@@ -22,7 +28,9 @@ class BotsPage extends React.Component {
       enlisted: [
         ...this.state.enlisted,
         bot
-      ]
+      ],
+      show: false,
+      showingBot: []
     })
   }
 
@@ -48,6 +56,21 @@ class BotsPage extends React.Component {
     })
   }
 
+  filteredBots = (e) => {
+    //? This makes React yell at me though...
+    let botClass = e.target.value
+    if(botClass === "All"){
+      this.setState({
+        filtered: this.state.bots,
+        filterValue: "All"
+      })
+      return
+    }
+    this.setState({
+      filtered: this.state.bots.filter(b => b.bot_class === botClass),
+      filterValue: botClass
+    })
+  }
 
   renderView = () => {
     if(this.state.show){
@@ -55,15 +78,18 @@ class BotsPage extends React.Component {
     }
     else{
       // <BotCollection bots={this.state.bots} callback={this.onEnlist}/>
-      return <BotCollection bots={this.state.bots} callback={this.changeToShow}/>
+      return (<BotCollection bots={this.state.filtered} callback={this.changeToShow} filter={this.filteredBots} filterValue={this.state.filterValue}/>)
     }
   }
+
+
   componentDidMount(){
     fetch('https://bot-battler-api.herokuapp.com/api/v1/bots')
     .then(res => res.json())
     .then(botsData => 
       this.setState({
-        bots: botsData
+        bots: botsData,
+        filtered: botsData
       })
     )
   }
@@ -71,7 +97,6 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        {/* put your components here */}
         <YourBotArmy bots={this.state.enlisted} callback={this.onDischarge}/>
         {this.renderView()}
       </div>
