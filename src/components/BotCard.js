@@ -18,13 +18,23 @@ const BotCard = props => {
     default:
       botType = <div />;
   }
+// delegates whether to go to show page or remove bot depending on which bot card is clicked - checks if bot.owned and if bot is in collection
+  const checkBotStatus = () => {
+    console.log(props)
+    if(bot.owned && props.inCollection === false){
+      props.handleClick(bot.id)
+    } else{
+      props.pageState(bot.id)
+    }
+  }
+
 
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={checkBotStatus}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />

@@ -61,17 +61,21 @@ const BotSpecs = props => {
             <button
               className="ui button fluid"
               onClick={() =>
-                console.log('connect this to a function that shows all bots')
+                //sets pageState to false in BotsPage when clicking on "Go Back"
+                props.pageState(false)
               }
             >
               Go Back
             </button>
             <button
               className="ui button fluid"
+              disabled={
+                //disables button if bot is owned
+                bot.owned
+              }
               onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
+                //triggers handleClick function which delegates to collectBot with passed in ID, also switches state  back to index page
+                 props.handleClick(bot.id)
               }
             >
               Enlist
