@@ -34,7 +34,9 @@ class BotsPage extends React.Component {
       }
     })
     this.setState({
-      bots: newBots
+      bots: newBots,
+      showPage: false,
+      currentId: ''
     })
   } 
 
