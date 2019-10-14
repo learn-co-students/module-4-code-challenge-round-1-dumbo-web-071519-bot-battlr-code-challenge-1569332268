@@ -40,11 +40,30 @@ addBot = (botid) => {
     });
     };
 
+    sortThings = (event) => {
+      if (event === "name"){
+      this.setState({displayedbots : this.state.displayedbots.sort((thingA, thingB) => thingA.name > thingB.name ? 1 : -1)})
+      }else {
+      this.setState({displayedbots : this.state.displayedbots.sort((thingA, thingB) => thingA.armor > thingB.armor ? -1 : 1)})
+      }}
+
 
   render() {
     return (
       <div>
         <h1>Hello from BotsPage </h1>
+        <br />
+        <br />
+        <strong> Sort by: </strong>
+        <label>
+        <input onChange={(event)=>this.sortThings(event.target.value)} name='sort' type='radio' value='name' checked={null}/>
+        name
+        </label>
+          <label>
+          <input onChange={(event)=>this.sortThings(event.target.value)} name='sort' type='radio' value='price' checked={null}/>
+          armor
+          </label>
+        <br />
         <br />
         <BotCollection addBot={this.addBot}
         bots={this.state.displayedbots}/>
