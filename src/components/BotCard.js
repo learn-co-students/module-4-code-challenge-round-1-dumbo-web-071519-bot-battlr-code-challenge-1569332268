@@ -24,14 +24,14 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={() => props.addBot ? props.addBot(props.bot) : props.removeBot(props.bot)}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
         </div>
         <div className="content">
           <div className="header">
-            {bot.name} {botType}
+            {props.bot.name} {botType}
           </div>
 
           <div className="meta text-wrap">
